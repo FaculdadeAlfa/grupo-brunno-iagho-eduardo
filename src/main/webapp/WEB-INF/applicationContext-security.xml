@@ -34,12 +34,12 @@
     </http>
 
     <beans:bean id="authProvider"
-                class="br.com.alfa.desmonte.view.controleAcesso.Authenticator">
+                class="br.com.alfa.trabalho.view.controleAcesso.Authenticator">
         <aop:scoped-proxy/>
     </beans:bean>
 
     <beans:bean id="userSession"
-                class="br.com.alfa.desmonte.view.controleAcesso.UserSession" scope="session">
+                class="br.com.alfa.trabalho.view.controleAcesso.UserSession" scope="session">
         <aop:scoped-proxy/>
     </beans:bean>
 

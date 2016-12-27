@@ -9,7 +9,7 @@
 
     <!--CONFIGS -->
     <context:spring-configured/>
-    <context:component-scan base-package="br.com.alfa.desmonte"/>
+    <context:component-scan base-package="br.com.alfa.trabalho"/>
     <context:annotation-config/>
 
     <!-- ************ ViewScope configuration ***** -->
@@ -17,7 +17,7 @@
         <property name="scopes">
             <map>
                 <entry key="view">
-                    <bean class="br.com.alfa.desmonte.util.ViewScope"/>
+                    <bean class="br.com.alfa.trabalho.util.ViewScope"/>
                 </entry>
             </map>
         </property>

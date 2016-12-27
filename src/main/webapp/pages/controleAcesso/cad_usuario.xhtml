@@ -5,15 +5,6 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:pe="http://primefaces.org/ui/extensions">
 
-    <script>connect();</script>
-    <p:remoteCommand name="loadBioRequest" actionListener="#{usuarioView.loadBioRequest()}"/>
-    <p:remoteCommand name="sendBioResponse" actionListener="#{usuarioView.capturaBiometria()}"/>
-    <p:remoteCommand name="reloadStatusDigital" update="form:statusDigital" global="false"/>
-    <p:remoteCommand name="showMsgErrorAxlBiometrics" actionListener="#{authenticator.msgErroAxlBiometrics()}"
-                     global="false"/>
-    <p:poll id="poll_ws_connect" widgetVar="poll_ws_connect" interval="3" autoStart="false" global="false"
-            onstart="javascript:connect();" listener="#{authenticator.msgErroAxlBiometrics()}"/>
-
     <div class="ContainerIndent">
         <p:panel>
             <div class="Container100 Responsive">
@@ -28,24 +19,6 @@
                     <p:fieldset legend="#{label['usuario.cadastro']}"
                                 styleClass="Responsive" id="idFieldsetCad">
                         <p:fieldset>
-                            <h:panelGrid>
-                                <p:commandLink title="Cadastrar nova digital" onclick="return solicitarBiometria()"
-                                               global="false" style="display: table">
-                                    <p:panel id="statusDigital">
-                                        <p:outputLabel value="Digital capturada!"
-                                                       style="color: green;"
-                                                       rendered="#{usuarioView.digitalOk}">
-                                            <i class="icon-ok-circled-green Fs14"/>
-                                        </p:outputLabel>
-
-                                        <p:outputLabel value="Digital não capturada!"
-                                                       style="color: red;"
-                                                       rendered="#{!usuarioView.digitalOk}">
-                                            <i class="icon-cancel-circled-red Fs14 TexAlCenter"/>
-                                        </p:outputLabel>
-                                    </p:panel>
-                                </p:commandLink>
-                            </h:panelGrid>
                             <h:panelGrid columns="2" cellpadding="5">
                                 <p:outputLabel value="Tipo Pessoa: " for="tp_pessoa"/>
                                 <p:selectOneMenu id="tp_pessoa" style="margin-left: 35%; width: 77px;"
@@ -79,11 +52,7 @@
 
                                 <p:outputLabel value="#{label['telefone']} :" for="idTelefone"/>
                                 <p:inputMask mask="(99) 9999-9999?9" id="idTelefone"
-                                             value="#{usuarioView.entidade.pessoa.telefone1}" size="16"/>
-
-                                <p:outputLabel value="#{label['telefone']} :" for="idTelefone1"/>
-                                <p:inputMask mask="(99) 9999-9999?9" id="idTelefone1"
-                                             value="#{usuarioView.entidade.pessoa.telefone2}" size="16"/>
+                                             value="#{usuarioView.entidade.pessoa.telefone}" size="16"/>
 
                                 <p:outputLabel value="#{label['pessoa.dataNascimento']} :"/>
                                 <p:calendar value="#{usuarioView.entidade.pessoa.dataNascimento}"
@@ -94,17 +63,17 @@
                             <h:panelGrid columns="4" cellpadding="5"
                                          rendered="#{usuarioView.tipoPessoa == 'JURIDICA'}">
 
-                                <p:outputLabel value="#{label['desmonte.cnpj']} :"/>
+                                <p:outputLabel value="#{label['empresa.cnpj']} :"/>
                                 <p:inputMask mask="99.999.999/9999-99" style="width: 150px"
                                              value="#{usuarioView.entidade.pessoa.cnpj}"
                                              converter="#{cgcCpfConverter}"/>
 
-                                <p:outputLabel value="#{label['desmonte.razaoSocial']} :"
+                                <p:outputLabel value="#{label['empresa.razaoSocial']} :"
                                                for="idRzSocial"/>
                                 <p:inputText id="idRzSocial" style="width: 250px"
                                              value="#{usuarioView.entidade.pessoa.razaoSocial}"/>
 
-                                <p:outputLabel value="#{label['desmonte.nomeFantasia']} :"
+                                <p:outputLabel value="#{label['empresa.nomeFantasia']} :"
                                                for="idNomeFant"/>
                                 <p:inputText id="idNomeFant" style="width: 250px"
                                              value="#{usuarioView.entidade.pessoa.nomeFantasia}"/>
@@ -113,7 +82,7 @@
                                 <p:inputText id="idEmailJud" style="width: 250px"
                                              value="#{usuarioView.entidade.pessoa.email}"/>
 
-                                <p:outputLabel value="#{label['desmonte.inscricaoEstadual']} :"
+                                <p:outputLabel value="#{label['empresa.inscricaoEstadual']} :"
                                                for="idInsc"/>
                                 <p:inputText id="idInsc" style="width: 250px"
                                              value="#{usuarioView.entidade.pessoa.inscricaoEstadual}"/>

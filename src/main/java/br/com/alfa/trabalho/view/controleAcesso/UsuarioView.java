@@ -12,129 +12,162 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Controller
 @Scope("view")
 public class UsuarioView extends BaseView {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Autowired
-	private UsuarioService service;
     @Autowired
-	private PerfilService perfilService;
+    private UsuarioService service;
+    @Autowired
+    private PerfilService perfilService;
 
-	private List<Perfil> listaPerfil;
-	private List<Usuario> lista;
-	private Usuario entidade;
-	private TipoPessoa tipoPessoa;
+    private List<Perfil> listaPerfil;
+    private List<Usuario> lista;
+    private Usuario entidade;
+    private TipoPessoa tipoPessoa;
 
-	private String senhaAtual;
-	private String novaSenha;
+    private String senhaAtual;
+    private String novaSenha;
 
-	private String novoEmail;
-	private String confirmacaoNovoEmail;
+    private String novoEmail;
+    private String confirmacaoNovoEmail;
 
-	public void init() {
-		try {
-			listaPerfil = perfilService.listarTodosPerfisAtivos();
-		} catch (Exception e) {
-			addMessageERROR("Falha ao listar Perfis.");
-		}
-		try {
-			lista = service.listarTodos();
-		} catch (Exception e) {
-			addMessageERROR("Falha ao listar Usuários.");
-		}
-	}
+    @PostConstruct
+    public void init() {
+        try {
+            listaPerfil = perfilService.listarTodosPerfisAtivos();
+        } catch (Exception e) {
+            addMessageERROR("Falha ao listar Perfis.");
+        }
+        try {
+            lista = service.listarTodos();
+        } catch (Exception e) {
+            addMessageERROR("Falha ao listar Usuários.");
+        }
+    }
 
-	public void prepararNovo() {
-		tipoPessoa = TipoPessoa.FISICA;
-		cleanPessoa();
-	}
+    public void remover() {
+        if (entidade != null && entidade.getId() > 0L) {
+            lista.remove(entidade);
+        }
+    }
 
-	public void cleanPessoa() {
-		if (tipoPessoa == TipoPessoa.FISICA) {
-			entidade.setPessoa(new PessoaFisica());
-		} else {
-			entidade.setPessoa(new PessoaJuridica());
-		}
-	}
+    public void prepararNovo() {
+        entidade = new Usuario();
+        entidade.setPerfil(new Perfil());
+        tipoPessoa = TipoPessoa.FISICA;
+        cleanPessoa();
+    }
 
-	public void detalharUsuario() {
-		if (entidade.getPessoa() instanceof PessoaFisica) {
-			tipoPessoa = TipoPessoa.FISICA;
-		} else {
-			tipoPessoa = TipoPessoa.JURIDICA;
-		}
-	}
+    public void cleanPessoa() {
+        if (tipoPessoa == TipoPessoa.FISICA) {
+            entidade.setPessoa(new PessoaFisica());
+        } else {
+            entidade.setPessoa(new PessoaJuridica());
+        }
+    }
 
-	public void redefinirSenha() {
-		Usuario u = getUsuarioLogado();
+    public void detalharUsuario() {
+        if (entidade.getPessoa() instanceof PessoaFisica) {
+            tipoPessoa = TipoPessoa.FISICA;
+        } else {
+            tipoPessoa = TipoPessoa.JURIDICA;
+        }
+    }
 
-		if (novaSenha.length() < 6) {
-			addMessageWARN("Sua senha deve possuir 6 a 10 caracteres.");
-			setErrorMasterDetail(true);
-			return;
-		}
-		if (!u.getSenha().equals(senhaAtual)) {
-			addMessageWARN("Senha Atual incorreta.");
-			setErrorMasterDetail(true);
-			return;
-		}
+    public void adicionar(){
+        if (entidade != null) {
+            entidade.setId(lista.size()+1L);
+            lista.add(entidade);
+        }
+    }
 
-		u.setSenha(novaSenha);
-		//TODO atualizar
-	}
+    public void redefinirSenha() {
+        Usuario u = getUsuarioLogado();
 
+        if (novaSenha.length() < 6) {
+            addMessageWARN("Sua senha deve possuir 6 a 10 caracteres.");
+            setErrorMasterDetail(true);
+            return;
+        }
+        if (!u.getSenha().equals(senhaAtual)) {
+            addMessageWARN("Senha Atual incorreta.");
+            setErrorMasterDetail(true);
+            return;
+        }
 
-	public List<Perfil> getListaPerfil() {
-		return listaPerfil;
-	}
-
-	public void setListaPerfil(List<Perfil> listaPerfil) {
-		this.listaPerfil = listaPerfil;
-	}
-
-	public TipoPessoa getTipoPessoa() {
-		return tipoPessoa;
-	}
-
-	public void setTipoPessoa(TipoPessoa tipoPessoa) {
-		this.tipoPessoa = tipoPessoa;
-	}
+        u.setSenha(novaSenha);
+        //TODO atualizar
+    }
 
 
-	public String getSenhaAtual() {
-		return senhaAtual;
-	}
+    public List<Perfil> getListaPerfil() {
+        return listaPerfil;
+    }
 
-	public void setSenhaAtual(String senhaAtual) {
-		this.senhaAtual = senhaAtual;
-	}
+    public void setListaPerfil(List<Perfil> listaPerfil) {
+        this.listaPerfil = listaPerfil;
+    }
 
-	public String getNovaSenha() {
-		return novaSenha;
-	}
+    public TipoPessoa getTipoPessoa() {
+        return tipoPessoa;
+    }
 
-	public void setNovaSenha(String novaSenha) {
-		this.novaSenha = novaSenha;
-	}
+    public void setTipoPessoa(TipoPessoa tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
+    }
 
-	public String getNovoEmail() {
-		return novoEmail;
-	}
 
-	public void setNovoEmail(String novoEmail) {
-		this.novoEmail = novoEmail;
-	}
+    public String getSenhaAtual() {
+        return senhaAtual;
+    }
 
-	public String getConfirmacaoNovoEmail() {
-		return confirmacaoNovoEmail;
-	}
+    public void setSenhaAtual(String senhaAtual) {
+        this.senhaAtual = senhaAtual;
+    }
 
-	public void setConfirmacaoNovoEmail(String confirmacaoNovoEmail) {
-		this.confirmacaoNovoEmail = confirmacaoNovoEmail;
-	}
+    public String getNovaSenha() {
+        return novaSenha;
+    }
+
+    public void setNovaSenha(String novaSenha) {
+        this.novaSenha = novaSenha;
+    }
+
+    public String getNovoEmail() {
+        return novoEmail;
+    }
+
+    public void setNovoEmail(String novoEmail) {
+        this.novoEmail = novoEmail;
+    }
+
+    public String getConfirmacaoNovoEmail() {
+        return confirmacaoNovoEmail;
+    }
+
+    public void setConfirmacaoNovoEmail(String confirmacaoNovoEmail) {
+        this.confirmacaoNovoEmail = confirmacaoNovoEmail;
+    }
+
+    public List<Usuario> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<Usuario> lista) {
+        this.lista = lista;
+    }
+
+    public Usuario getEntidade() {
+        return entidade;
+    }
+
+    public void setEntidade(Usuario entidade) {
+        this.entidade = entidade;
+    }
 }

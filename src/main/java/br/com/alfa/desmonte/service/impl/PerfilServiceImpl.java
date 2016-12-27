@@ -1,6 +1,5 @@
 package br.com.alfa.desmonte.service.impl;
 
-import br.com.alfa.desmonte.enumerator.TipoCredenciadaEnum;
 import br.com.alfa.desmonte.model.Perfil;
 import br.com.alfa.desmonte.service.PerfilService;
 import org.springframework.stereotype.Service;
@@ -27,12 +26,6 @@ public class PerfilServiceImpl implements PerfilService, Serializable {
     }
 
     public List<Perfil> listarTodosPerfisAtivos() {
-        return null;
-    }
-
-
-    @Override
-    public List<Perfil> listarPerfisByTipo(TipoCredenciadaEnum tipoCredenciada) {
         return null;
     }
 

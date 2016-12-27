@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-06-27T15:16:03 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Solic_Desmontagem" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5cd3cc8e-1239-497e-810e-4dddb66bbd5b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="LOGO_DETRAN" class="java.lang.String"/>
+	<parameter name="LOGO_ESTADO" class="java.lang.String"/>
+	<parameter name="CIDADE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="razaoSocial" class="java.lang.String">
+		<fieldDescription><![CDATA[razaoSocial]]></fieldDescription>
+	</field>
+	<field name="cnpj" class="java.lang.String">
+		<fieldDescription><![CDATA[cnpj]]></fieldDescription>
+	</field>
+	<title>
+		<band height="100" splitType="Stretch">
+			<staticText>
+				<reportElement x="83" y="16" width="395" height="64" uuid="55dfa23d-e305-4194-a44e-3a42085f4099">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORMULÁRIO DE SOLICITAÇÃO DE REGISTRO PARA EMPRESAS ESTABELECIDAS NO RAMO DE RECUPERAÇÃO DE PARTES E PEÇAS DE VEÍCULOS.]]></text>
+			</staticText>
+			<image vAlign="Middle">
+				<reportElement x="0" y="0" width="80" height="60" uuid="0ad9b06b-b7b8-42c4-ba10-1d1dfb9c70f7"/>
+				<imageExpression><![CDATA[$P{LOGO_ESTADO}]]></imageExpression>
+			</image>
+			<image vAlign="Middle">
+				<reportElement x="480" y="0" width="75" height="60" uuid="3c47c759-7a26-4144-9111-b627da9148e9">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{LOGO_DETRAN}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="448" splitType="Stretch">
+			<textField>
+				<reportElement x="70" y="100" width="420" height="100" uuid="f994ddde-5d58-4c58-b8fd-4f800e936c8a"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA["                                                                          , por intermédio de seu representante legal, vem solicitar a Vossa Senhoria, nos termos da Lei no 12.977, de 20 de maio de 2014, e normativos do Conselho Nacional de Trânsito, que seja analisada a proposta de instalação de empresa empresas estabelecidas no ramo de recuperação de partes e peças de veículos, no Município de ..........................................., Estado............................................."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="70" y="200" width="420" height="20" uuid="95036d06-48a5-4735-aa46-dbc3834dbd13"/>
+				<text><![CDATA[P. Deferimento.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="0" width="420" height="100" uuid="088d50ef-a86f-4c0c-804e-68635e97f09e"/>
+				<text><![CDATA[Ilmo. Sr. Diretor do Departamento Nacional de Trânsito - DENATRAN
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="280" width="160" height="18" uuid="06a06f00-5a9a-444c-a1ce-e266b1e5463c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CIDADE}+", "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
+				<reportElement key="" x="240" y="280" width="240" height="18" uuid="f0569bd0-2e4a-4867-a608-a8850e3979b9"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="80" y="380" width="369" height="1" uuid="4ee4e2d9-8b3d-420a-b4ae-c867f12cb7da"/>
+			</line>
+			<staticText>
+				<reportElement x="80" y="380" width="400" height="20" uuid="662a0ffb-a072-4aba-85b0-72d802ac4c92"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Nome e assinatura do representante legal]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

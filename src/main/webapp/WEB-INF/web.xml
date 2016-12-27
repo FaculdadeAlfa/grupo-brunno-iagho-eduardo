@@ -23,16 +23,6 @@
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
-    <!-- captcha -->
-    <context-param>
-        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
-        <param-value>6LdiQBoTAAAAAEMNpwxW-6aGn2bnYPPQB-R4tD-D</param-value>
-    </context-param>
-
-    <context-param>
-        <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
-        <param-value>6LdiQBoTAAAAALvWiN4I9FVCnlyEWXGLq33iVNmv</param-value>
-    </context-param>
 
     <!-- File Upload -->
     <filter>

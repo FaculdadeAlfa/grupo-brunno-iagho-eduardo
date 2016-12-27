@@ -15,7 +15,6 @@ public class Perfil extends AbstractModel implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
     private String nome;
-    private Perfil pai;
     private List<Permissao> listaPermissoes;
     private Date dataRegistro;
     private Date dataExclusao;
@@ -58,13 +57,5 @@ public class Perfil extends AbstractModel implements Serializable {
 
     public void setListaPermissoes(List<Permissao> listaPermissoes) {
         this.listaPermissoes = listaPermissoes;
-    }
-
-    public Perfil getPai() {
-        return pai;
-    }
-
-    public void setPai(Perfil pai) {
-        this.pai = pai;
     }
 }

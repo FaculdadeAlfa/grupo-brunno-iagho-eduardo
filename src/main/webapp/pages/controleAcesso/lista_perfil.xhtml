@@ -31,10 +31,7 @@
 							sortBy="#{perfil.nome}">
 							<h:outputText value="#{perfil.nome}" />
 						</p:column>
-						<p:column headerText="#{label['perfil.pai']}"
-							sortBy="#{perfil.pai.nome}" styleClass="Wid40">
-							<h:outputText value="#{perfil.pai.nome}" />
-						</p:column>
+
 						<p:column headerText="#{label['perfil.qtdPermissao']}"
 							styleClass="Wid10 TexAlCenter">
 							<h:outputText value="#{perfil.listaPermissoes.size()}" />

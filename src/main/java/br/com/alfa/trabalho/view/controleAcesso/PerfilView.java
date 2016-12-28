@@ -2,6 +2,7 @@ package br.com.alfa.trabalho.view.controleAcesso;
 
 import br.com.alfa.trabalho.model.Perfil;
 import br.com.alfa.trabalho.model.Permissao;
+import br.com.alfa.trabalho.service.PerfilService;
 import br.com.alfa.trabalho.service.PermissaoService;
 import br.com.alfa.trabalho.view.comum.BaseView;
 import org.primefaces.model.DualListModel;
@@ -21,12 +22,16 @@ public class PerfilView extends BaseView {
     private Perfil entidade;
 
     @Autowired
+    private PerfilService perfilService;
+
+    @Autowired
     private PermissaoService permissaoService;
 
     private DualListModel<Permissao> dualListPermissoes;
 
     @PostConstruct
     public void init() {
+        lista = perfilService.listarTodosPerfisAtivos();
     }
 
     public void adicionar() {

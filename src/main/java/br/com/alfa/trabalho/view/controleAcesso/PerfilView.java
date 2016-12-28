@@ -11,10 +11,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import java.util.List;
 
 @Controller
 @Scope("view")
+@ManagedBean
 public class PerfilView extends BaseView {
 
     private static final long serialVersionUID = 1L;
@@ -48,6 +50,10 @@ public class PerfilView extends BaseView {
 
     public void detalharPerfil() {
 
+    }
+
+    public void remover() {
+        lista.remove(entidade);
     }
 
     public List<Perfil> getLista() {

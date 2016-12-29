@@ -13,10 +13,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import java.util.List;
 
 @Controller
 @Scope("view")
+@ManagedBean
 public class UsuarioView extends BaseView {
 
     private static final long serialVersionUID = 1L;

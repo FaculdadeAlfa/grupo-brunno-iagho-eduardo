@@ -23,22 +23,6 @@
 							<p:inputText id="nome" value="#{perfilView.entidade.nome}"
 								size="70" maxlength="50" required="true"
 								requiredMessage="NOME é obrigatório" />
-
-							<p:outputLabel value="#{label['perfil.pai']} :" for="idPerfilPai" />
-							<p:selectOneMenu id="idPerfilPai"
-								value="#{perfilView.entidade.pai}" style="min-width:300px;"
-								converter="#{modelSelectConverter}">
-								<f:selectItem itemLabel=" - #{label['selecione']} -"
-									itemValue="#{null}" />
-								<f:selectItems value="#{perfilView.lista}" var="perfil"
-									itemLabel="#{perfil.nome}" itemValue="#{perfil}" />
-							</p:selectOneMenu>
-
-							<p:outputLabel value="Lista de Permissões" />
-							<p:pickList value="#{perfilView.dualListPermissoes}" var="per"
-								itemLabel="[#{per.id}] #{per.nome}" itemValue="#{per}"
-								converter="#{modelPicklistConverter}"
-								styleClass="ui-picklist-sentinel" />
 						</h:panelGrid>
 					</div>
 				</div>
@@ -68,10 +52,10 @@
 					update="@form" styleClass="greenButton Fright20"
 					rendered="#{perfilView.entidade.id ne null}"
 					actionListener="#{perfilView.atualizar}">
-					<pe:selectDetailLevel step="-1" />
-					<f:setPropertyActionListener
-						target="#{perfilView.dualListPermissoes}"
-						value="#{perfilView.dualListPermissoes}" />
+
+
+					<f:setPropertyActionListener target="#{perfilView.entidade}"
+												 value="#{perfil}" />
 				</p:commandButton>
 			</p:panel>
 		</p:panel>

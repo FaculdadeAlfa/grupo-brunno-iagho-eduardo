@@ -18,8 +18,8 @@ public class UsuarioServiceImpl implements UsuarioService, Serializable {
     private static final long serialVersionUID = 1L;
 
     @Override
-    public Usuario login(String login) {
-        return new Usuario();
+    public boolean adicionar(Usuario usuario) {
+        return true;
     }
 
     public List<Usuario> listarTodos() {
@@ -52,10 +52,6 @@ public class UsuarioServiceImpl implements UsuarioService, Serializable {
 
     @Override
     public void registrarLogAcesso(Usuario usuario) {
-
-    }
-
-    public void adicionar(Usuario entity) {
 
     }
 

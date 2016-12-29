@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UsuarioService {
 
-    Usuario login(String login);
+    boolean adicionar(Usuario usuario);
 
     List<Usuario> listarTodos();
 
